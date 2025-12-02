@@ -18,7 +18,8 @@ int main(){
 	printf("test 9 - 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n");
 	printf("Какой тест запустить ? ( от 1 до 9). Любой другой символ завершит программу\n");
 	char num_test = fgetc(stdin);
-	if ('0' < num_test and num_test <= '9') {
+	for (; '0' < num_test and num_test <= '9';) {
+		getchar(); // очистка буфера от \n
 		test_result = test_check(Print_comands, gdt, num_test);
 		if (true == test_result) {
 			printf("Тест %c выполнен успешно\n", num_test);
@@ -27,7 +28,9 @@ int main(){
 		else {
 			printf("Тест %c выполнен провально\n", num_test);
 		}
-
+		//добавить очистку файла
+		printf("Какой тест запустить ? ( от 1 до 9). Любой другой символ завершит программу\n");
+		num_test = fgetc(stdin);
 	}
 
 
@@ -88,7 +91,7 @@ bool test_check(FILE* Print_comands, FILE* gdt, char num_test){
 		return false;
 	}
 
-	fseek(gdt, start_read, SEEK_SET); // изменить номер байта для чтения файла, 0 == первый символ файла
+	fseek(gdt, start_read, SEEK_SET); // изменяет начальный байт для чтения файла, 0 == первый символ файла
 	for (; ;) {
 		test_gdt = fgetc(gdt);
 		printf("%c\n", test_gdt); // удалить в релизе
