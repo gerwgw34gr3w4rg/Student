@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../Sort_Main/Sort_Main.vcxproj" Id="d63b2a4e-04e0-4659-8a64-59753750a307" />
+  <Project Path="Sort_Test.vcxproj" Id="ca0e1e88-043a-4861-aff1-1f9e759286ae" />
+</Solution>
