@@ -2,7 +2,7 @@
 
 
 //после выполнения теста в файле должен быть мусор!
-int main(){
+int main() {
 	setlocale(LC_CTYPE, "Russian");
 	FILE* Print_comands = NULL;
 	FILE* gdt = NULL; // готовые домашние тесты

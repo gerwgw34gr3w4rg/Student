@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ca0e1e88-043a-4861-aff1-1f9e759286ae}</ProjectGuid>
+    <ProjectGuid>{851f7548-2fe0-48bd-894f-75ec9ec4aa13}</ProjectGuid>
     <RootNamespace>SortTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
