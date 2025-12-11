@@ -36,6 +36,18 @@ void Doubly_linked_list_print(); // вывести номера всех узл�
 
 
 int main(){
+    //test start
+    data = 5;
+    Doubly_linked_list_delete();
+    Doubly_linked_list_push(data);
+    Doubly_linked_list_peek();
+    Doubly_linked_list_next();
+    Doubly_linked_list_back();
+    Doubly_linked_list_start();
+    Doubly_linked_list_last();
+    Doubly_linked_list_print();
+
+
     data = 15;
     Doubly_linked_list_new();
     Doubly_linked_list_next();
@@ -72,6 +84,8 @@ int main(){
 
     Doubly_linked_list_print();
     Doubly_linked_list_peek();
+
+    //test end
 
 end:
     for (; NULL != current_node;) {
