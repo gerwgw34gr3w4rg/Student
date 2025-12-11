@@ -1,0 +1,1 @@
+Person *ivan = Person_init("Ivan", 5);
