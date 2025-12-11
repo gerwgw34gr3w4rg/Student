@@ -17,6 +17,7 @@ typedef struct Doubly_linked_list {
     struct Doubly_linked_list* back;
 } Doubly_linked_list;
 int32_t total_nodes = 0; // колличество узлов
+int32_t data;
 
 
 Doubly_linked_list* start_node = NULL;
@@ -25,24 +26,57 @@ Doubly_linked_list* last_node = NULL;
 
 void Doubly_linked_list_new(); // создать узел
 void Doubly_linked_list_delete(); // удалить текущий узел
-void Doubly_linked_list_next(); // следующий узел
-void Doubly_linked_list_back(); // предыдущий узел
+void Doubly_linked_list_push(int32_t data);// ввести данные в текущий узел
+void Doubly_linked_list_peek(); // посмотреть данные в текущем узле
+void Doubly_linked_list_next(); // перейти на следующий узел
+void Doubly_linked_list_back(); // перейти на предыдущий узел
+void Doubly_linked_list_start(); // перейти на первый узел
+void Doubly_linked_list_last(); // перейти на последний узел
+void Doubly_linked_list_print(); // вывести номера всех узлов и их содержимое
 
 
 int main(){
-
+    data = 15;
     Doubly_linked_list_new();
-
     Doubly_linked_list_next();
+    Doubly_linked_list_push(data);
+
+    data = 25;
+    Doubly_linked_list_new();
+    Doubly_linked_list_next();
+    Doubly_linked_list_push(data);
+
+    Doubly_linked_list_print();
+
+    data = 35;
+    Doubly_linked_list_new();
+    Doubly_linked_list_next();
+    Doubly_linked_list_push(data);
+
+    data = 45;
+    Doubly_linked_list_new();
+    Doubly_linked_list_next();
+    Doubly_linked_list_push(data);
+
+    data = 55;
+    Doubly_linked_list_new();
+    Doubly_linked_list_next();
+    Doubly_linked_list_push(data);
+
+    Doubly_linked_list_print();
+
 
     Doubly_linked_list_back();
+    Doubly_linked_list_back();
+    Doubly_linked_list_delete();
 
+    Doubly_linked_list_print();
 
 end:
     for (; NULL != current_node;) {
         Doubly_linked_list_delete();
     }
-    printf("------------------------------------Success------------------------------------\n");
+    printf("\n------------------------------------Success------------------------------------\n\n");
 }
 
 
@@ -51,7 +85,7 @@ void Doubly_linked_list_new(){
 	Doubly_linked_list* node = NULL;
     node = (Doubly_linked_list*)malloc(sizeof(Doubly_linked_list));
     if(NULL == node) {
-		printf("Error: Failed to allocate memory, not enough memory\n");
+		printf("Warning - failed to create node, not enough memory\n");
         return;
 	}
     if (NULL == last_node) {
@@ -76,7 +110,7 @@ void Doubly_linked_list_new(){
 // удалить текущий узел
 void Doubly_linked_list_delete() {
     if (NULL == current_node) {
-        printf("Warning - current_node = NULL");
+        printf("Warning - current node points to nothing, deletion failed\n");
         return;
     }
     bool end = false;
@@ -107,7 +141,27 @@ void Doubly_linked_list_delete() {
     total_nodes--;
 }
 
-// следующий узел
+// ввести данные в текущий узел
+void Doubly_linked_list_push(int32_t data) {
+    if (NULL == current_node) {
+        printf("Warning: current node points to nowhere, "
+                "no data was placed into the node\n");
+        return;
+    }
+    current_node->data = data;
+}
+
+// посмотреть данные в текущем узле
+void Doubly_linked_list_peek() {
+    if (NULL == current_node) {
+        printf("Warning: current node points to nowhere, "
+                "data cannot be viewed\n");
+        return;
+    }
+    printf("data current node - %d\n", current_node->data);
+}
+
+// перейти на следующий узел
 void Doubly_linked_list_next() {
     if (NULL == current_node) {
 		printf("Warning - current node = NULL, the transition has been cancelled\n");
@@ -120,15 +174,49 @@ void Doubly_linked_list_next() {
 	current_node = current_node->next;
 }
 
-// предыдущий узел
+// перейти на предыдущий узел
 void Doubly_linked_list_back() {
     if (NULL == current_node) {
-        printf("Warning - current node = NULL, the transition has been cancelled");
+        printf("Warning - current node = NULL, the transition has been cancelled\n");
         return;
     }
     else if (NULL == current_node->back) {
-        printf("Warning - back node = NULL, the transition has been cancelled");
+        printf("Warning - back node = NULL, the transition has been cancelled\n");
         return;
     }
     current_node = current_node->back;
+}
+
+// перейти на первый узел
+void Doubly_linked_list_start() {
+    if (NULL == start_node) {
+        printf("Warning - start node = NULL, the transition has been cancelled\n");
+        return;
+    }
+    current_node = start_node;
+}
+
+// перейти на последний узел
+void Doubly_linked_list_last() {
+    if (NULL == last_node) {
+        printf("Warning - last node = NULL, the transition has been cancelled\n");
+        return;
+    }
+    current_node = last_node;
+}
+
+// вывести номера всех узлов и их содержимое
+void Doubly_linked_list_print() {
+    if (NULL == start_node) {
+        printf("No nodes\n");
+        return;
+    }
+    Doubly_linked_list* tmp = start_node;
+    int32_t i = 1;
+    do {
+        printf("node %d, data = %d\n", i, tmp->data);
+        tmp = tmp->next;
+        i++;
+    } while (start_node != tmp);
+    printf("\n");
 }
