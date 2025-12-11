@@ -71,6 +71,7 @@ int main(){
     Doubly_linked_list_delete();
 
     Doubly_linked_list_print();
+    Doubly_linked_list_peek();
 
 end:
     for (; NULL != current_node;) {
