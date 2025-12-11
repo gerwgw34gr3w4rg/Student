@@ -10,89 +10,93 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "doubly_linked_list.h"
 
-typedef struct Doubly_linked_list {
-    int32_t data : 32;
-    struct Doubly_linked_list* next;
-    struct Doubly_linked_list* back;
-} Doubly_linked_list;
-int32_t total_nodes = 0; // колличество узлов
-int32_t data;
+// 
+// typedef struct Doubly_linked_list {
+//     int32_t data : 32;  // Не нужно указывать ширину поля
+//     struct Doubly_linked_list* next;
+//     struct Doubly_linked_list* back;
+// } Doubly_linked_list;
+// 
+// 
+// int32_t total_nodes = 0; // колличество узлов
+// int32_t data;
+// 
+// 
+// Doubly_linked_list* start_node = NULL;
+// Doubly_linked_list* current_node = NULL;
+// Doubly_linked_list* last_node = NULL;
 
-
-Doubly_linked_list* start_node = NULL;
-Doubly_linked_list* current_node = NULL;
-Doubly_linked_list* last_node = NULL;
-
-void Doubly_linked_list_new(); // создать узел
-void Doubly_linked_list_delete(); // удалить текущий узел
-void Doubly_linked_list_push(int32_t data);// ввести данные в текущий узел
-void Doubly_linked_list_peek(); // посмотреть данные в текущем узле
-void Doubly_linked_list_next(); // перейти на следующий узел
-void Doubly_linked_list_back(); // перейти на предыдущий узел
-void Doubly_linked_list_start(); // перейти на первый узел
-void Doubly_linked_list_last(); // перейти на последний узел
-void Doubly_linked_list_print(); // вывести номера всех узлов и их содержимое
-
-
-int main(){
-    //test start
-    data = 5;
-    Doubly_linked_list_delete();
-    Doubly_linked_list_push(data);
-    Doubly_linked_list_peek();
-    Doubly_linked_list_next();
-    Doubly_linked_list_back();
-    Doubly_linked_list_start();
-    Doubly_linked_list_last();
-    Doubly_linked_list_print();
-
-
-    data = 15;
-    Doubly_linked_list_new();
-    Doubly_linked_list_next();
-    Doubly_linked_list_push(data);
-
-    data = 25;
-    Doubly_linked_list_new();
-    Doubly_linked_list_next();
-    Doubly_linked_list_push(data);
-
-    Doubly_linked_list_print();
-
-    data = 35;
-    Doubly_linked_list_new();
-    Doubly_linked_list_next();
-    Doubly_linked_list_push(data);
-
-    data = 45;
-    Doubly_linked_list_new();
-    Doubly_linked_list_next();
-    Doubly_linked_list_push(data);
-
-    data = 55;
-    Doubly_linked_list_new();
-    Doubly_linked_list_next();
-    Doubly_linked_list_push(data);
-
-    Doubly_linked_list_print();
-
-
-    Doubly_linked_list_back();
-    Doubly_linked_list_back();
-    Doubly_linked_list_delete();
-
-    Doubly_linked_list_print();
-    Doubly_linked_list_peek();
-
-    //test end
-
-end:
-    for (; NULL != current_node;) {
-        Doubly_linked_list_delete();
-    }
-    printf("\n------------------------------------Success------------------------------------\n\n");
-}
+// void Doubly_linked_list_new(); // создать узел
+// void Doubly_linked_list_delete(); // удалить текущий узел
+// void Doubly_linked_list_push(int32_t data);// ввести данные в текущий узел
+// void Doubly_linked_list_peek(); // посмотреть данные в текущем узле
+// void Doubly_linked_list_next(); // перейти на следующий узел
+// void Doubly_linked_list_back(); // перейти на предыдущий узел
+// void Doubly_linked_list_start(); // перейти на первый узел
+// void Doubly_linked_list_last(); // перейти на последний узел
+// void Doubly_linked_list_print(); // вывести номера всех узлов и их содержимое
+// 
+// 
+// int main(){
+//     //test start
+//     data = 5;
+//     Doubly_linked_list_delete();
+//     Doubly_linked_list_push(data);
+//     Doubly_linked_list_peek();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_back();
+//     Doubly_linked_list_start();
+//     Doubly_linked_list_last();
+//     Doubly_linked_list_print();
+// 
+// 
+//     data = 15;
+//     Doubly_linked_list_new();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_push(data);
+// 
+//     data = 25;
+//     Doubly_linked_list_new();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_push(data);
+// 
+//     Doubly_linked_list_print();
+// 
+//     data = 35;
+//     Doubly_linked_list_new();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_push(data);
+// 
+//     data = 45;
+//     Doubly_linked_list_new();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_push(data);
+// 
+//     data = 55;
+//     Doubly_linked_list_new();
+//     Doubly_linked_list_next();
+//     Doubly_linked_list_push(data);
+// 
+//     Doubly_linked_list_print();
+// 
+// 
+//     Doubly_linked_list_back();
+//     Doubly_linked_list_back();
+//     Doubly_linked_list_delete();
+// 
+//     Doubly_linked_list_print();
+//     Doubly_linked_list_peek();
+// 
+//     //test end
+// 
+// end:
+//     for (; NULL != current_node;) {
+//         Doubly_linked_list_delete();
+//     }
+//     printf("\n------------------------------------Success------------------------------------\n\n");
+// }
 
 
 // создать узел
